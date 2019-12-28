@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    submit
+{% endblock %}
+
+{% block main %}
+<div style="float:right; margin-right: 10%;">user: {{ name }}</div>
+<h2>
+    assignments <div style=font-size:30px>submit</div>
+</h2>
+    <form action="/assignments" method="get" style="margin-right: -5%;">
+            <button class=" dropbtn" type="submit">go to assignment list</button>
+    </form>
+    <br><br><br>
+    <form action="/submit" method="post">
+         <div class="dropdown">
+            <select name="sub_list">
+                <option selected disabled>select option</option>
+                <option value="week 1: signal poem">week 1: signal poem</option>
+                <option value="week 2: connect the dots">week 2: connect the dots</option>
+                <option value="week 3: the future">week 3: the future</option>
+                <option value="week 5: soldering">week 5: soldering</option>
+                <option value="week 6: remote access">week 6: remote access</option>
+            </select>
+            <input autocomplete="off" autofocus name="link_input" placeholder="link to submission" type="text">
+        </div>
+        <button name="submit" type="submit">submit assignment</button>
+    </form>
+
+    <p>
+        <b>submission log:</b>
+            {% if sub_table is defined %}
+                {% for row in sub_table %}
+                    <br><br>
+                    ✓ {{ row["assignment"] }} – <br><i>{{ row["submission"] }}</i>
+                {% endfor %}
+            {% endif %}
+
+    </p>
+
+    <br>
+    <br>
+
+{% endblock %}

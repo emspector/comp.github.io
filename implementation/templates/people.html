@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    people
+{% endblock %}
+
+{% block main %}
+<div style="float:right; margin-right: 10%;">user: {{ name }}</div>
+<h2>
+    people
+</h2>
+
+   <main>
+        <div id="admin">
+            {% if prof_table is defined %}
+                <b>comp directors:</b><br>
+                <ul>
+                {% for row in prof_table %}
+                    {% if (row["email"] == "emilyspector@college.harvard.edu") or (row["email"] == "broberts@college.harvard.edu") or (row["email"] == "bchemberlin@college.harvard.edu") %}
+                        <li>{{ row["name"] }}: {{ row["dorm"] }}, {{ row["email"] }}, {{ row["phone"] }}</li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+
+                <br>
+
+                <b>compers:</b><br>
+                <ul>
+                {% for row in prof_table %}
+                    {% if (row["email"] != "emilyspector@college.harvard.edu") and (row["email"] != "broberts@college.harvard.edu") and (row["email"] != "bchemberlin@college.harvard.edu") %}
+                        <li>{{ row["name"] }} ({{ row["pronouns"] }}): {{ row["dorm"] }}, {{ row["email"] }}</li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            {% endif %}
+
+    </main>
+
+    <br>
+    <br>
+
+{% endblock %}

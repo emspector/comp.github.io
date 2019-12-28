@@ -1,0 +1,47 @@
+
+{% extends "layout.html" %}
+
+{% block title %}
+    assignments
+{% endblock %}
+
+{% block main %}
+<div style="float:right; margin-right: 10%;">user: {{ name }}</div>
+<h2>
+    assignments
+</h2>
+    <form action="/submit" method="get" style="margin-right: -5%;">
+            <button class=" dropbtn" type="submit">go to submission portal</button>
+    </form>
+<div class="content">
+            <p>
+                <b>week 1 assignment (due feb 9 meeting 2):<br>signal flow poem</b><br>
+                write a poem that describes the signal flow inside studio AC or BC and please also include a drawing of your favorite emoji
+                <br><br>
+                <b>week 2 assignment (due feb 16 at meeting 3):<br>connect the dots</b>
+                <br>
+                complete the connect the dots slide by drawing arrows that place all the components of the signal path in order
+                <br><br>
+                <b>week 3 assignment (due feb 23 at meeting 4):<br>the future</b><br>
+                imagine we had $20,000 to re-do the studios. write up a couple of paragraphs on what hardware or software we should get and why
+                <br><br>
+                <b>week 4 assignment (due march 1 at meeting 5):<br>catch-up week</b><br>
+                nothing due! come to office hours or shadow, and make sure you understand everything we've gone over so far and that all your assignments are in
+                <br><br>
+                <b>week 5 assignment (due march 8 at meeting 6):<br>soldering</b><br>
+                create an XLR cable that is ~8ft long, test it in the cable tester, and then coil it nicely :) submit pictures of the soldered attachments and a happy cable tester
+                <br><br>
+                <b>~~spring break~~</b><br>
+                <br>
+                <b>week 6 assignment (due march 15 at meeting 7):<br>remote access</b><br>
+                remote into the studio AC rivendell computer and create one day of automation
+                <br><br>
+                <b>week 7 assignment: lunch</b><br>
+                come have lunch with the whole tech department in mather to celebrate finishing the comp!!!
+            </p>
+        </div>
+
+        <br>
+        <br>
+
+{% endblock %}

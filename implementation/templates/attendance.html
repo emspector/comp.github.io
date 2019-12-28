@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    attendance
+{% endblock %}
+
+{% block main %}
+<div style="float:right; margin-right: 10%;">user: {{ name }}</div>
+<h2>
+    attendance
+</h2>
+    <form action="/attendance" method="post">
+         <div class="dropdown">
+            <select name="att_list">
+                <option selected disabled>select option</option>
+                <option value="meeting 1">meeting 1</option>
+                <option value="office hours 1">office hours 1</option>
+                <option value="meeting 2">meeting 2</option>
+                <option value="office hours 2">office hours 2</option>
+                <option value="meeting 3">meeting 3</option>
+                <option value="office hours 3">office hours 3</option>
+                <option value="meeting 4">meeting 4</option>
+                <option value="office hours 4">office hours 4</option>
+                <option value="meeting 5">meeting 5</option>
+                <option value="office hours 5">office hours 5</option>
+                <option value="meeting 6">meeting 6</option>
+                <option value="office hours 6">office hours 6</option>
+                <option value="meeting 7">meeting 7</option>
+            </select>
+            </div>
+        </div>
+        <button name="submit" type="submit">log attendance</button>
+    </form>
+
+    <p>
+        <b>attendance log:</b>
+            {% if att_table is defined %}
+            {% for row in att_table %}
+                <br>
+                ✓ {{ row["meeting_num"] }}
+            {% endfor %}
+        {% endif %}
+
+    </p>
+
+    <br>
+    <br>
+
+{% endblock %}

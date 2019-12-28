@@ -1,0 +1,100 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    admin
+{% endblock %}
+
+{% block main %}
+<div style="float:right; margin-right: 10%;">user: {{ name }}</div>
+<h2>
+    admin
+</h2>
+
+   <main>
+        <div id="admin">
+            {% if prof_table is defined %}
+                {% for row in prof_table %}
+                    {% if row["email"] != ("emilyspector@college.harvard.edu" or "broberts@college.harvard.edu" or "bchemberlin@college.harvard.edu") %}
+                        {% set user_id = row["user_id"] %}
+                        {{ row["name"] }} ({{ row["pronouns"] }}) - {{ row["email"] }} - {{ row["phone"] }}
+                        <div id="parent">
+                            <div id="left-half">
+                                attendance  <br>
+                                <div class="table-content">
+                                    <ul>
+                                    {% for row in att_table %}
+                                        {% if row["user_id"] == user_id %}
+                                            <li>{{ row["meeting_num"] }} <div id="time"> [{{ row["timestamp"] }}] </div></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="right-half">
+                                submissions <br>
+                                <div class="table-content">
+                                    {% for row in sub_table %}
+                                        {% if row["user_id"] == user_id %}
+                                            <ul>
+                                                <li>
+                                                    {{ row["assignment"] }}<br>
+                                                    <div style="font-size: 15px;">evaluation: {{ row["evaluation"] }}</div>
+                                                    <div id="clip"> {{ row["submission"] }} </div>
+                                                    <div id="time">
+                                                        [{{ row["timestamp"] }}]
+                                                    </div>
+                                                    {% if row["evaluation"] == "TODO" %}
+                                                        {% set sub_id = row["sub_id"] %}
+                                                        <form action="/admin" method="post" id="eval-form">
+                                                            <input autocomplete="off" autofocus name="evaluation" placeholder="evaluation" type="text" id="eval-input">
+                                                            <input type="hidden" name="sub_id" value={{sub_id}}>
+                                                            <button name="enter" type="submit" id="eval-button">enter</button>
+                                                        </form>
+                                                    {% endif %}
+                                                </li>
+                                            </ul>
+
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+            {% if prof_table is defined %}
+                <b>email list:</b>
+                {% for row in prof_table %}
+                    {% if row["email"] != ("emilyspector@college.harvard.edu" or "broberts@college.harvard.edu" or "bchemberlin@college.harvard.edu") %}
+                         {{ row["email"] }},
+                    {% endif %}
+                {% endfor %}
+                tech@whrb.org, emilyspector@college.harvard.edu, broberts@college.harvard.edu, bchemberlin@college.harvard.edu
+
+                <br><br>
+
+                <b>dorm storm:</b>
+                {% for row in prof_table %}
+                    {% if row["email"] != ("emilyspector@college.harvard.edu" or "broberts@college.harvard.edu" or "bchemberlin@college.harvard.edu") %}
+                        <br>{{ row["name"] }}: {{ row["dorm"] }}, {{ row["room"] }}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+            <br><br>
+
+            <b>drop comper:</b>
+            <form action="/drop" method="post" id="eval-form">
+                <input autocomplete="off" autofocus name="email" placeholder="email of comper to drop" type="text">
+                <button name="drop" type="submit">drop from comp</button>
+            </form>
+
+        </div>
+    </main>
+
+    <br>
+    <br>
+
+{% endblock %}

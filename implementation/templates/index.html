@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    dashboard
+{% endblock %}
+
+{% block main %}
+<div style="float:right; margin-right: 10%;">user: {{ name }}</div>
+<h2>
+    dashboard
+</h2>
+
+<main>
+    <div class="banner">
+        <h3>
+            <b>next meeting:</b> sunday, feb 9 @ 6pm in the RH lounge (signal poem due; submit <a href="/submit" id="white">here</a>)<br>
+            <b>upcoming events:</b> tech pregame saturday feb 29 @ 9pm + field trip to smith transmitter on sunday, march 1 @ 4pm
+        </h3>
+    </div>
+
+    <br>
+
+    <div id="parent" style="margin-left:10%;margin-right:10%;">
+         <div id="left-third">
+            attendance
+            <div class="table-content">
+                {% if att_table is defined %}
+                    {% for row in att_table %}
+                    <br>
+                        ✓ {{ row["meeting_num"] }}
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <div id="middle-third">
+            submissions
+            <div class="table-content">
+                {% if sub_table is defined %}
+                    {% for row in sub_table %}
+                        <br>
+                        ✓ {{ row["assignment"] }}
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <div id="right-third">
+            links
+            <div class = "table-content">
+                <ul>
+                    <li><a href="https://groupme.com/join_group/56219284/E9BZOWhH" id="white">comp groupme</a></li>
+                    <li><a href="https://docs.google.com/document/d/11EJDKfC6NBGgZeL74SdMtiLLP_hlgq2llzjVI1FJlw0/edit?usp=sharing" id="white">tech log</a>
+                    <li><a href="https://drive.google.com/drive/u/1/folders/14jgJzPmi_AIZGb4CMxeUoUGs0c3vFmHV" id="white">tech docs</a>
+                    <li><a href="https://teamup.com/kspb8qsnvatvxjdumj" id="white">studio ac calendar</a>
+                    <li><a href="https://www.whrb.org" id="white">whrb.org</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    get in touch w the tech comp directors:
+    <button type="button" class="pill" id="normal">
+        <a href="mailto:emilyspector@college.harvard.edu,broberts@college.harvard.edu,bchemberlin@college.harvard.edu" class="white">email magic button</a>
+    </button>
+
+    <!--- <button type="button" class="pill" id="normal">
+        <a href="sms:19144266511" class="white">texting magic button</a>
+    </button>
+
+    <button type="button" class="pill" id="normal">
+        <a href="tel:19144266511" class="white">phonecall magic button</a>
+    </button> --->
+
+
+</main>
+
+<br>
+<br>
+
+{% endblock %}
